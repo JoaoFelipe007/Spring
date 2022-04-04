@@ -1,4 +1,4 @@
-/*
+    /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
@@ -8,10 +8,12 @@ import com.produtos.apirest.models.Produto;
 import com.produtos.apirest.repository.produtosRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -36,9 +38,18 @@ public class produtoResorce {
             return produtoRepository.findById(id);
          }
           
-   @PostMapping("/produto")
+   @PostMapping("/produto")// criar
         public Produto salvarProduto(@RequestBody Produto produto){
        return produtoRepository.save(produto);
    }
             
+   @DeleteMapping("/produto")//deleta
+   public void deletaProduto(@RequestBody Produto produto){
+       produtoRepository.delete(produto);
+   }
+   
+   @PutMapping("/produto")// altera
+   public Produto alteraProduto(@RequestBody Produto produto){
+       return produtoRepository.save(produto);
+   }
  }
